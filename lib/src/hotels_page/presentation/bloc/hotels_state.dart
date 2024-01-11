@@ -1,10 +1,23 @@
 part of 'hotels_bloc.dart';
 
-sealed class HotelsState extends Equatable {
+abstract class HotelsState extends Equatable {
   const HotelsState();
-  
+
   @override
   List<Object> get props => [];
 }
 
 final class HotelsInitial extends HotelsState {}
+
+final class HotelsLoadingState extends HotelsState {}
+
+final class HotelsLoadedState extends HotelsState {
+  final List<HotelModel> hotels;
+
+  const HotelsLoadedState({required this.hotels});
+
+  @override
+  List<Object> get props => [hotels.map((e) => e.id)];
+}
+
+final class HotelsLoadingErrorState extends HotelsState {}

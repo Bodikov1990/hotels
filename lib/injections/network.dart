@@ -12,5 +12,14 @@ String _baseUrl() {
 void init() async {
   // Register Dio
   final Dio dio = Dio(BaseOptions(baseUrl: _baseUrl()));
+
+  // Add an interceptor to print out request URL
+  dio.interceptors.add(InterceptorsWrapper(
+    onRequest: (options, handler) {
+      print('Sending request to ${options.baseUrl}${options.path}');
+      return handler.next(options); // Continue with the request
+    },
+  ));
+
   getIt.registerLazySingleton<Dio>(() => dio);
 }

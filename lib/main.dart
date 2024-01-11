@@ -22,7 +22,11 @@ class _HotelsAppState extends State<HotelsApp> {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       return MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         routerConfig: _appRouter.config(),
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity),
       );
     });
   }
