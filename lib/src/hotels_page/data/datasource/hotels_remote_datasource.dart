@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hotels/core/errors/exeptions.dart';
-import 'package:hotels/src/hotel_list/domain/entities/hotel_entity.dart';
+import 'package:hotels/src/hotels_page/domain/entities/hotel_entity.dart';
 
 abstract class HotelsRemoteDataSource {
   Future<List<HotelEntity>> getHotels();
