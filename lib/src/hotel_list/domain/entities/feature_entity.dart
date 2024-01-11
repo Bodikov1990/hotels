@@ -6,14 +6,11 @@ part 'feature_entity.g.dart';
 @JsonSerializable()
 class FeatureEntity extends Equatable {
   final String? id;
+  @JsonKey(name: 'hotel_id')
   final String? hotelId;
   final String? name;
 
-  const FeatureEntity({
-    this.name,
-    this.id,
-    this.hotelId,
-  });
+  const FeatureEntity({this.name, this.id, this.hotelId});
 
   @override
   List<Object?> get props => [id, hotelId];

@@ -7,16 +7,30 @@ part of 'room_entity.dart';
 // **************************************************************************
 
 RoomEntity _$RoomEntityFromJson(Map<String, dynamic> json) => RoomEntity(
+      (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
       id: json['id'] as String?,
-      hotelId: json['hotelId'] as String?,
+      hotelId: json['hotel_id'] as String?,
       name: json['name'] as String?,
-      mainFeature: json['mainFeature'] as String?,
+      price: json['price'] as String?,
+      count: json['count'] as String?,
+      fuelPrice: json['fuel_price'] as String?,
+      servicePrice: json['service_price'] as String?,
+      mainFeature: json['main_feature'] as String?,
+      features: (json['features'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$RoomEntityToJson(RoomEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'hotelId': instance.hotelId,
+      'hotel_id': instance.hotelId,
       'name': instance.name,
-      'mainFeature': instance.mainFeature,
+      'main_feature': instance.mainFeature,
+      'price': instance.price,
+      'count': instance.count,
+      'fuel_price': instance.fuelPrice,
+      'service_price': instance.servicePrice,
+      'images': instance.images,
+      'features': instance.features,
     };
