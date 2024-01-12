@@ -2,9 +2,10 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hotels/router/auto_routes.dart';
 import 'package:hotels/src/booking_page/presentation/bloc/booking_bloc.dart';
 import 'package:hotels/src/booking_page/presentation/views/booking_details_widget.dart';
 import 'package:hotels/src/booking_page/presentation/views/booking_price_widget.dart';
@@ -89,7 +90,9 @@ class _BookingPageState extends State<BookingPage> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          AutoRouter.of(context).push(const PaymentRoute());
+                        },
                         child: Text(
                           'Оплатить ${state.room.price}',
                           textAlign: TextAlign.center,
@@ -278,13 +281,15 @@ class _BookingPageState extends State<BookingPage> {
                   label: 'Почта',
                   initialValue: 'example@gmail.com',
                   onChanged: (value) => value),
-              const SizedBox(height: 24.0),
-              const Text(
-                'Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту',
-                style: TextStyle(
-                  color: Color(0xFF828796),
-                  fontSize: 14,
-                  fontWeight: FontWeight.normal,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  'Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту',
+                  style: TextStyle(
+                    color: Color(0xFF828796),
+                    fontSize: 14,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               ),
             ],
@@ -385,6 +390,9 @@ class _BookingPageState extends State<BookingPage> {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(
               children: <Widget>[
+                const SizedBox(
+                  height: 4,
+                ),
                 _buildTextField(
                     label: 'Имя',
                     initialValue: tourist.name,
