@@ -13,16 +13,25 @@ class AboutHotel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
+      decoration: const ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Text('Об отеле',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 22,
-                  fontFamily: 'SF Pro Display',
-                  fontWeight: FontWeight.w500)),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text('Об отеле',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 22,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w500)),
+          ),
           const SizedBox(
             height: 16,
           ),
@@ -32,17 +41,23 @@ class AboutHotel extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          Text(hotel.description ?? '',
-              style: TextStyle(
-                color: Colors.black.withOpacity(0.8999999761581421),
-                fontSize: 16,
-                fontFamily: 'SF Pro Display',
-                fontWeight: FontWeight.w400,
-              )),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(hotel.description ?? '',
+                style: TextStyle(
+                  color: Colors.black.withOpacity(0.8999999761581421),
+                  fontSize: 16,
+                  fontFamily: 'SF Pro Display',
+                  fontWeight: FontWeight.w400,
+                )),
+          ),
           const SizedBox(
             height: 16,
           ),
-          const FakeList()
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: FakeList(),
+          )
         ]),
       ),
     );

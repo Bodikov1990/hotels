@@ -15,6 +15,17 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    BookingRoute.name: (routeData) {
+      final args = routeData.argsAs<BookingRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: BookingPage(
+          key: args.key,
+          hotel: args.hotel,
+          room: args.room,
+        ),
+      );
+    },
     HotelsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -32,6 +43,49 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [BookingPage]
+class BookingRoute extends PageRouteInfo<BookingRouteArgs> {
+  BookingRoute({
+    Key? key,
+    required HotelModel hotel,
+    required RoomModel room,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BookingRoute.name,
+          args: BookingRouteArgs(
+            key: key,
+            hotel: hotel,
+            room: room,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'BookingRoute';
+
+  static const PageInfo<BookingRouteArgs> page =
+      PageInfo<BookingRouteArgs>(name);
+}
+
+class BookingRouteArgs {
+  const BookingRouteArgs({
+    this.key,
+    required this.hotel,
+    required this.room,
+  });
+
+  final Key? key;
+
+  final HotelModel hotel;
+
+  final RoomModel room;
+
+  @override
+  String toString() {
+    return 'BookingRouteArgs{key: $key, hotel: $hotel, room: $room}';
+  }
 }
 
 /// generated route for

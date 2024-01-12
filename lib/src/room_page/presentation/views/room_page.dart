@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hotels/router/auto_routes.dart';
 import 'package:hotels/src/hotels_page/data/models/hotel_model.dart';
 import 'package:hotels/src/hotels_page/presentation/views/feature_list.dart';
 import 'package:hotels/src/hotels_page/presentation/views/image_carousel_widget.dart';
@@ -57,50 +58,62 @@ class _RoomPageState extends State<RoomPage> {
                   itemCount: state.hotel.toRoomModel().length,
                   itemBuilder: (context, index) {
                     final room = state.hotel.toRoomModel()[index];
-                    return Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ImageCarousel(urlImages: room.images),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            _buildRoomName(room),
-                            const SizedBox(
-                              height: 13,
-                            ),
-                            FeaturesList(
-                              features: room.features,
-                            ),
-                            const SizedBox(
-                              height: 13,
-                            ),
-                            _fakeAboutRoom(),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            _buildPrice(room),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            ElevatedButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  "Выбрать номер",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontFamily: 'SF Pro Display',
-                                    fontWeight: FontWeight.w500,
-                                    height: 0.07,
-                                    letterSpacing: 0.10,
-                                  ),
-                                )),
-                          ],
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: Container(
+                        decoration: const ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(12)),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ImageCarousel(urlImages: room.images),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              _buildRoomName(room),
+                              const SizedBox(
+                                height: 13,
+                              ),
+                              FeaturesList(
+                                features: room.features,
+                              ),
+                              const SizedBox(
+                                height: 13,
+                              ),
+                              _fakeAboutRoom(),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              _buildPrice(room),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    AutoRouter.of(context).push(BookingRoute(
+                                        hotel: state.hotel, room: room));
+                                  },
+                                  child: const Text(
+                                    "Выбрать номер",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'SF Pro Display',
+                                      fontWeight: FontWeight.w500,
+                                      height: 0.07,
+                                      letterSpacing: 0.10,
+                                    ),
+                                  )),
+                            ],
+                          ),
                         ),
                       ),
                     );

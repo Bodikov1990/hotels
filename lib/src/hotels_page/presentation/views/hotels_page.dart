@@ -55,7 +55,15 @@ class _HotelsPageState extends State<HotelsPage> {
                   final hotel = state.hotels[index];
                   return Column(
                     children: [
-                      Card(
+                      Container(
+                        decoration: const ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(12),
+                                bottomRight: Radius.circular(12)),
+                          ),
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Column(
@@ -175,7 +183,7 @@ class _HotelsPageState extends State<HotelsPage> {
 
   Container _buildCategory(HotelModel hotel) {
     return Container(
-        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
         decoration: ShapeDecoration(
           color: const Color(0x33FFC600),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
@@ -187,7 +195,16 @@ class _HotelsPageState extends State<HotelsPage> {
             const SizedBox(
               width: 4,
             ),
-            Text(hotel.category ?? ''),
+            Text(
+              hotel.category ?? '',
+              style: const TextStyle(
+                color: Color(0xFFFFA800),
+                fontSize: 16,
+                fontFamily: 'SF Pro Display',
+                fontWeight: FontWeight.w500,
+                height: 0.07,
+              ),
+            ),
           ],
         ));
   }
