@@ -20,7 +20,17 @@ abstract class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: const HotelsPage(),
       );
-    }
+    },
+    RoomRoute.name: (routeData) {
+      final args = routeData.argsAs<RoomRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: RoomPage(
+          key: args.key,
+          hotel: args.hotel,
+        ),
+      );
+    },
   };
 }
 
@@ -36,4 +46,41 @@ class HotelsRoute extends PageRouteInfo<void> {
   static const String name = 'HotelsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RoomPage]
+class RoomRoute extends PageRouteInfo<RoomRouteArgs> {
+  RoomRoute({
+    Key? key,
+    required HotelModel hotel,
+    List<PageRouteInfo>? children,
+  }) : super(
+          RoomRoute.name,
+          args: RoomRouteArgs(
+            key: key,
+            hotel: hotel,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'RoomRoute';
+
+  static const PageInfo<RoomRouteArgs> page = PageInfo<RoomRouteArgs>(name);
+}
+
+class RoomRouteArgs {
+  const RoomRouteArgs({
+    this.key,
+    required this.hotel,
+  });
+
+  final Key? key;
+
+  final HotelModel hotel;
+
+  @override
+  String toString() {
+    return 'RoomRouteArgs{key: $key, hotel: $hotel}';
+  }
 }

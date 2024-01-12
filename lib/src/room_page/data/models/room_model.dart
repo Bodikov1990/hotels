@@ -1,4 +1,4 @@
-import 'package:hotels/src/hotels_page/domain/entities/room_entity.dart';
+import 'package:hotels/src/room_page/domain/entities/room_entity.dart';
 
 class RoomModel extends RoomEntity {
   const RoomModel(

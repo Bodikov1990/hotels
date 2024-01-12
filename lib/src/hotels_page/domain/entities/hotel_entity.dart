@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
-import 'package:hotels/src/hotels_page/domain/entities/room_entity.dart';
+import 'package:hotels/src/room_page/data/models/room_model.dart';
+import 'package:hotels/src/room_page/domain/entities/room_entity.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 
@@ -62,4 +63,21 @@ class HotelEntity extends Equatable {
       _$HotelEntityFromJson(json);
 
   Map<String, dynamic> toJson() => _$HotelEntityToJson(this);
+
+  List<RoomModel> toRoomModel() {
+    return rooms
+            ?.map((e) => RoomModel(
+                images: e.images ?? [],
+                id: e.id ?? '',
+                hotelId: e.hotelId ?? '',
+                name: e.name ?? '',
+                price: e.price ?? '',
+                count: e.count ?? '',
+                fuelPrice: e.fuelPrice ?? '',
+                servicePrice: e.servicePrice ?? '',
+                mainFeature: e.mainFeature ?? '',
+                features: e.features ?? []))
+            .toList() ??
+        [];
+  }
 }

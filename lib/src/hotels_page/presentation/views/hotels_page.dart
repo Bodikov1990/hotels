@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hotels/router/auto_routes.dart';
 import 'package:hotels/src/hotels_page/data/models/hotel_model.dart';
 import 'package:hotels/src/hotels_page/presentation/views/about_hotel_widget.dart';
 import 'package:hotels/src/hotels_page/presentation/views/image_carousel_widget.dart';
@@ -88,7 +89,10 @@ class _HotelsPageState extends State<HotelsPage> {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              AutoRouter.of(context)
+                                  .push(RoomRoute(hotel: hotel));
+                            },
                             child: const Text(
                               'К выбору номера',
                               textAlign: TextAlign.center,

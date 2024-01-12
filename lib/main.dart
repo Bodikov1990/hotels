@@ -27,7 +27,7 @@ class _HotelsAppState extends State<HotelsApp> {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
-          scaffoldBackgroundColor: Color.fromARGB(255, 237, 237, 237),
+          scaffoldBackgroundColor: const Color.fromARGB(255, 237, 237, 237),
           cardColor: Colors.white,
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(

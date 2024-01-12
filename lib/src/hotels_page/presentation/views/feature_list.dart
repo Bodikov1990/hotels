@@ -16,7 +16,18 @@ class FeaturesList extends StatelessWidget {
       children: features != null
           ? features!
               .map((feature) => Chip(
-                    label: Text(feature),
+                    side: const BorderSide(
+                        color: Color.fromARGB(255, 255, 255, 255), width: 0),
+                    label: Text(
+                      feature,
+                      style: const TextStyle(
+                        color: Color(0xFF828796),
+                        fontSize: 16,
+                        fontFamily: 'SF Pro Display',
+                        fontWeight: FontWeight.w500,
+                        height: 0.07,
+                      ),
+                    ),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ))
               .toList()
