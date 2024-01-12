@@ -67,9 +67,12 @@ class _BookingPageState extends State<BookingPage> {
                   ),
                   _buildBookingInfo(state),
                   const SizedBox(
-                    height: 4,
+                    height: 8,
                   ),
                   _buildClientInfo(),
+                  const SizedBox(
+                    height: 4,
+                  ),
                   for (int i = 0; i < tourists.length; i++)
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -244,64 +247,51 @@ class _BookingPageState extends State<BookingPage> {
 
   SizedBox _buildClientInfo() {
     return SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0),
-          child: Container(
-            decoration: const ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Информация о покупателе',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 22,
-                      fontFamily: 'SF Pro Display',
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 16.0),
-                  TextField(
-                    decoration: const InputDecoration(
-                      labelText: 'Номер телефона',
-                      prefixIcon: Icon(Icons.phone),
-                    ),
-                    keyboardType: TextInputType.phone,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                  ),
-                  const SizedBox(height: 16.0),
-                  const TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Почта',
-                      prefixIcon: Icon(Icons.email),
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  const SizedBox(height: 16.0),
-                  const Text(
-                    'Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту',
-                    style: TextStyle(
-                      color: Color(0xFF828796),
-                      fontSize: 14,
-                      fontFamily: 'SF Pro Display',
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      width: double.infinity,
+      child: Container(
+        decoration: const ShapeDecoration(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
-        ));
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Информация о покупателе',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 24.0),
+              _buildTextField(
+                  label: 'Номер телефона',
+                  initialValue: '+7 (777) 777-77-77',
+                  onChanged: (value) => value),
+              const SizedBox(height: 24.0),
+              _buildTextField(
+                  label: 'Почта',
+                  initialValue: 'example@gmail.com',
+                  onChanged: (value) => value),
+              const SizedBox(height: 24.0),
+              const Text(
+                'Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту',
+                style: TextStyle(
+                  color: Color(0xFF828796),
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   Container _buildCategory(HotelModel hotel) {
@@ -546,17 +536,21 @@ class TouristInfo {
   String citizenship;
   String passportNumber;
   String passportExpiryDate;
+  String phone;
+  String email;
 
-  TouristInfo({
-    Widget icon = const Icon(Icons.arrow_drop_down),
-    this.isExpanded = false,
-    this.name = '',
-    this.lastName = '',
-    this.birthDate = '',
-    this.citizenship = '',
-    this.passportNumber = '',
-    this.passportExpiryDate = '',
-  }) : icon = SvgPicture.asset(
+  TouristInfo(
+      {Widget icon = const Icon(Icons.arrow_drop_down),
+      this.isExpanded = false,
+      this.name = '',
+      this.lastName = '',
+      this.birthDate = '',
+      this.citizenship = '',
+      this.passportNumber = '',
+      this.passportExpiryDate = '',
+      this.phone = '',
+      this.email = ''})
+      : icon = SvgPicture.asset(
           "assets/images/arrow_down.svg",
           width: 24,
           height: 24,
