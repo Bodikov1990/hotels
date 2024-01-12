@@ -19,7 +19,8 @@ class HotelsBloc extends Bloc<HotelsEvent, HotelsState> {
 
     final result = await _getHotelsUseCase();
 
-    result.fold((failurel) => emit(HotelsLoadingErrorState()),
+    result.fold(
+        (failurel) => emit(HotelsLoadingErrorState(message: failurel.message)),
         (hotels) => emit(HotelsLoadedState(hotels: hotels)));
   }
 }

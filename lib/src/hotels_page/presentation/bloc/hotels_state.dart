@@ -20,4 +20,11 @@ final class HotelsLoadedState extends HotelsState {
   List<Object> get props => [hotels.map((e) => e.id)];
 }
 
-final class HotelsLoadingErrorState extends HotelsState {}
+final class HotelsLoadingErrorState extends HotelsState {
+  final String message;
+
+  const HotelsLoadingErrorState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}

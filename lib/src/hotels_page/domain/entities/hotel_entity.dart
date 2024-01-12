@@ -1,6 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
-import 'package:hotels/src/hotels_page/domain/entities/feature_entity.dart';
 import 'package:hotels/src/hotels_page/domain/entities/room_entity.dart';
 
 import 'package:json_annotation/json_annotation.dart';
@@ -24,7 +23,7 @@ class HotelEntity extends Equatable {
   @JsonKey(name: 'date_to')
   final String? dateTo;
   final List<String>? images;
-  final List<FeatureEntity>? features;
+  final List<String>? features;
   final List<RoomEntity>? rooms;
 
   const HotelEntity({

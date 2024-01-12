@@ -6,7 +6,7 @@ import 'package:get_it/get_it.dart';
 final getIt = GetIt.instance;
 
 String _baseUrl() {
-  return 'https://mocki.io/';
+  return 'https://mocki.io';
 }
 
 void init() async {

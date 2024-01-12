@@ -21,16 +21,17 @@ class RoomEntity extends Equatable {
   final List<String>? images;
   final List<String>? features;
 
-  const RoomEntity(this.images,
-      {this.id,
-      this.hotelId,
-      this.name,
-      this.price,
-      this.count,
-      this.fuelPrice,
-      this.servicePrice,
-      this.mainFeature,
-      this.features});
+  const RoomEntity(
+      {required this.images,
+      required this.id,
+      required this.hotelId,
+      required this.name,
+      required this.price,
+      required this.count,
+      required this.fuelPrice,
+      required this.servicePrice,
+      required this.mainFeature,
+      required this.features});
 
   @override
   List<Object?> get props => [id, hotelId];

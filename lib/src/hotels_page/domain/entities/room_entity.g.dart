@@ -7,7 +7,8 @@ part of 'room_entity.dart';
 // **************************************************************************
 
 RoomEntity _$RoomEntityFromJson(Map<String, dynamic> json) => RoomEntity(
-      (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      images:
+          (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
       id: json['id'] as String?,
       hotelId: json['hotel_id'] as String?,
       name: json['name'] as String?,

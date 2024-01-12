@@ -20,7 +20,7 @@ HotelEntity _$HotelEntityFromJson(Map<String, dynamic> json) => HotelEntity(
       images:
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
       features: (json['features'] as List<dynamic>?)
-          ?.map((e) => FeatureEntity.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => e as String)
           .toList(),
       rooms: (json['rooms'] as List<dynamic>?)
           ?.map((e) => RoomEntity.fromJson(e as Map<String, dynamic>))

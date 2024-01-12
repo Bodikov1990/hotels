@@ -15,7 +15,7 @@ class HotelsRemoteDataSourceImpl implements HotelsRemoteDataSource {
   Future<List<HotelEntity>> getHotels() async {
     try {
       Response response =
-          await _dio.get('v1/c6aa4e61-a38b-4ac1-bd1a-cc0fed1c1ebe');
+          await _dio.get('/v1/7b54aa72-e0b3-4e59-a176-be89e91dc4f3');
 
       if (response.statusCode != 200) {
         throw APIExeption(
