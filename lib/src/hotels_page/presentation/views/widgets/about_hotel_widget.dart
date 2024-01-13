@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hotels/core/utils/constants.dart';
 import 'package:hotels/src/hotels_page/data/models/hotel_model.dart';
-import 'package:hotels/src/hotels_page/presentation/views/fake_list.dart';
-import 'package:hotels/src/hotels_page/presentation/views/feature_list.dart';
+import 'package:hotels/src/hotels_page/presentation/views/widgets/fake_list.dart';
+import 'package:hotels/src/hotels_page/presentation/views/widgets/feature_list.dart';
 
 class AboutHotel extends StatelessWidget {
   const AboutHotel({
@@ -25,7 +26,7 @@ class AboutHotel extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text('Об отеле',
+            child: Text(aboutHotel,
                 style: TextStyle(
                     color: Colors.black,
                     fontSize: 22,

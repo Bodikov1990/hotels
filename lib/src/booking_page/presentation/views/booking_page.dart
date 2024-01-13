@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hotels/core/utils/constants.dart';
 import 'package:hotels/router/auto_routes.dart';
+import 'package:hotels/src/booking_page/presentation/views/view_model/tourist_info_model.dart';
 import 'package:hotels/src/booking_page/presentation/bloc/booking_bloc.dart';
 import 'package:hotels/src/booking_page/presentation/views/booking_details_widget.dart';
 import 'package:hotels/src/booking_page/presentation/views/booking_price_widget.dart';
@@ -25,9 +27,9 @@ class BookingPage extends StatefulWidget {
 class _BookingPageState extends State<BookingPage> {
   final _bookingBloc = BookingBloc();
 
-  final List<TouristInfo> tourists = [
-    TouristInfo(isExpanded: true, name: 'Иван', lastName: 'Иванов'),
-    TouristInfo(isExpanded: false, name: '', lastName: '')
+  final List<TouristInfoModel> tourists = [
+    TouristInfoModel(isExpanded: true, name: 'Иван', lastName: 'Иванов'),
+    TouristInfoModel(isExpanded: false, name: '', lastName: '')
   ];
 
   @override
@@ -39,7 +41,7 @@ class _BookingPageState extends State<BookingPage> {
 
   void _addNewTourist() {
     setState(() {
-      tourists.add(TouristInfo(isExpanded: true));
+      tourists.add(TouristInfoModel(isExpanded: true));
     });
   }
 
@@ -47,7 +49,7 @@ class _BookingPageState extends State<BookingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Бронирование'),
+        title: const Text(bookingScreenTitle),
         centerTitle: true,
       ),
       body: BlocBuilder<BookingBloc, BookingState>(
@@ -94,7 +96,7 @@ class _BookingPageState extends State<BookingPage> {
                           AutoRouter.of(context).push(const PaymentRoute());
                         },
                         child: Text(
-                          'Оплатить ${state.room.price}',
+                          '$pay ${state.room.price}',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             color: Colors.white,
@@ -197,18 +199,20 @@ class _BookingPageState extends State<BookingPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 BookingDetailRow(
-                    title: 'Вылет из', value: state.hotel.cityFrom ?? ''),
+                    title: flightFrom, value: state.hotel.cityFrom ?? ''),
                 BookingDetailRow(
-                    title: 'Страна, город', value: state.hotel.cityTo ?? ''),
+                    title: country, value: state.hotel.cityTo ?? ''),
                 BookingDetailRow(
-                    title: 'Даты',
+                    title: dates,
                     value: '${state.hotel.dateFrom} – ${state.hotel.dateTo}'),
                 BookingDetailRow(
-                    title: 'Кол-во ночей', value: state.room.count ?? ''),
-                BookingDetailRow(title: 'Отель', value: state.hotel.name ?? ''),
-                BookingDetailRow(title: 'Номер', value: state.room.name ?? ''),
+                    title: nightCounts, value: state.room.count ?? ''),
                 BookingDetailRow(
-                    title: 'Питание', value: state.room.mainFeature ?? ''),
+                    title: hotelTitle, value: state.hotel.name ?? ''),
+                BookingDetailRow(
+                    title: roomTitle, value: state.room.name ?? ''),
+                BookingDetailRow(
+                    title: food, value: state.room.mainFeature ?? ''),
               ],
             ),
           )),
@@ -230,14 +234,13 @@ class _BookingPageState extends State<BookingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BookingPriceWidget(title: 'Тур', value: state.room.price ?? ''),
+                BookingPriceWidget(title: tour, value: state.room.price ?? ''),
                 BookingPriceWidget(
-                    title: 'Топливный сбор', value: state.room.fuelPrice ?? ''),
+                    title: fuelPrice, value: state.room.fuelPrice ?? ''),
                 BookingPriceWidget(
-                    title: 'Сервисный сбор',
-                    value: state.room.servicePrice ?? ''),
+                    title: servicePrice, value: state.room.servicePrice ?? ''),
                 BookingPriceWidget(
-                  title: 'К оплате',
+                  title: toPay,
                   value: state.room.price ?? '',
                   color: const Color(0xFF0D72FF),
                   fontWeight: FontWeight.w600,
@@ -264,7 +267,7 @@ class _BookingPageState extends State<BookingPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Информация о покупателе',
+                aboutClient,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 22,
@@ -273,18 +276,18 @@ class _BookingPageState extends State<BookingPage> {
               ),
               const SizedBox(height: 24.0),
               _buildTextField(
-                  label: 'Номер телефона',
+                  label: phoneNumber,
                   initialValue: '+7 (777) 777-77-77',
                   onChanged: (value) => value),
               const SizedBox(height: 24.0),
               _buildTextField(
-                  label: 'Почта',
+                  label: email,
                   initialValue: 'example@gmail.com',
                   onChanged: (value) => value),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  'Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту',
+                  warningText,
                   style: TextStyle(
                     color: Color(0xFF828796),
                     fontSize: 14,
@@ -327,14 +330,14 @@ class _BookingPageState extends State<BookingPage> {
         ));
   }
 
-  Widget _buildTouristInfo(TouristInfo tourist, int index) {
+  Widget _buildTouristInfo(TouristInfoModel tourist, int index) {
     String title;
     if (index == 0) {
-      title = 'Первый турист';
+      title = firstTourist;
     } else if (index == 1) {
-      title = 'Второй турист';
+      title = secondTourist;
     } else {
-      title = 'Турист ${index + 1}';
+      title = '$tourist ${index + 1}';
     }
 
     return Container(
@@ -394,42 +397,42 @@ class _BookingPageState extends State<BookingPage> {
                   height: 4,
                 ),
                 _buildTextField(
-                    label: 'Имя',
+                    label: name,
                     initialValue: tourist.name,
                     onChanged: (value) => tourist.name = value),
                 const SizedBox(
                   height: 8,
                 ),
                 _buildTextField(
-                    label: 'Фамилия',
+                    label: lastName,
                     initialValue: tourist.lastName,
                     onChanged: (value) => tourist.lastName = value),
                 const SizedBox(
                   height: 8,
                 ),
                 _buildTextField(
-                    label: 'Дата рождения',
+                    label: birthDate,
                     initialValue: tourist.birthDate,
                     onChanged: (value) => tourist.birthDate = value),
                 const SizedBox(
                   height: 8,
                 ),
                 _buildTextField(
-                    label: 'Гражданство',
+                    label: citizenship,
                     initialValue: tourist.citizenship,
                     onChanged: (value) => tourist.citizenship = value),
                 const SizedBox(
                   height: 8,
                 ),
                 _buildTextField(
-                    label: 'Номер загранпаспорта',
+                    label: passportNumber,
                     initialValue: tourist.passportNumber,
                     onChanged: (value) => tourist.passportNumber = value),
                 const SizedBox(
                   height: 8,
                 ),
                 _buildTextField(
-                    label: 'Срок действия загранпаспорта',
+                    label: passportExpiryDate,
                     initialValue: tourist.passportExpiryDate,
                     onChanged: (value) => tourist.passportExpiryDate = value),
                 const SizedBox(
@@ -509,7 +512,7 @@ class _BookingPageState extends State<BookingPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
-                'Добавить туриста',
+                addTourist,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 22,
@@ -533,34 +536,4 @@ class _BookingPageState extends State<BookingPage> {
       ),
     );
   }
-}
-
-class TouristInfo {
-  Widget icon;
-  bool isExpanded;
-  String name;
-  String lastName;
-  String birthDate;
-  String citizenship;
-  String passportNumber;
-  String passportExpiryDate;
-  String phone;
-  String email;
-
-  TouristInfo(
-      {Widget icon = const Icon(Icons.arrow_drop_down),
-      this.isExpanded = false,
-      this.name = '',
-      this.lastName = '',
-      this.birthDate = '',
-      this.citizenship = '',
-      this.passportNumber = '',
-      this.passportExpiryDate = '',
-      this.phone = '',
-      this.email = ''})
-      : icon = SvgPicture.asset(
-          "assets/images/arrow_down.svg",
-          width: 24,
-          height: 24,
-        );
 }

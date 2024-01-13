@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hotels/core/utils/constants.dart';
 
 class FakeList extends StatelessWidget {
   const FakeList({
@@ -43,7 +44,7 @@ class FakeList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Удобства',
+                            convinients,
                             style: TextStyle(
                               color: Color(0xFF2C3035),
                               fontSize: 16,
@@ -53,7 +54,7 @@ class FakeList extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Самое необходимое',
+                            bestNeeds,
                             style: TextStyle(
                               color: Color(0xFF828696),
                               fontSize: 14,
@@ -92,7 +93,7 @@ class FakeList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Удобства',
+                            allInclusive,
                             style: TextStyle(
                               color: Color(0xFF2C3035),
                               fontSize: 16,
@@ -102,7 +103,7 @@ class FakeList extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Самое необходимое',
+                            bestNeeds,
                             style: TextStyle(
                               color: Color(0xFF828696),
                               fontSize: 14,
@@ -141,7 +142,7 @@ class FakeList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Что не включено',
+                            includs,
                             style: TextStyle(
                               color: Color(0xFF2C3035),
                               fontSize: 16,
@@ -151,7 +152,7 @@ class FakeList extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Самое необходимое',
+                            bestNeeds,
                             style: TextStyle(
                               color: Color(0xFF828696),
                               fontSize: 14,

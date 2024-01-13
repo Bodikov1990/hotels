@@ -4,11 +4,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hotels/core/utils/constants.dart';
 import 'package:hotels/router/auto_routes.dart';
 import 'package:hotels/src/hotels_page/data/models/hotel_model.dart';
-import 'package:hotels/src/hotels_page/presentation/views/about_hotel_widget.dart';
-import 'package:hotels/src/hotels_page/presentation/views/image_carousel_widget.dart';
 import 'package:hotels/src/hotels_page/presentation/bloc/hotels_bloc.dart';
+import 'package:hotels/src/hotels_page/presentation/views/widgets/about_hotel_widget.dart';
+import 'package:hotels/src/hotels_page/presentation/views/widgets/image_carousel_widget.dart';
 
 @RoutePage()
 class HotelsPage extends StatefulWidget {
@@ -38,7 +39,7 @@ class _HotelsPageState extends State<HotelsPage> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Отель'),
+          title: const Text(hotelScreenTitle),
           centerTitle: true,
         ),
         body: BlocBuilder<HotelsBloc, HotelsState>(
@@ -102,7 +103,7 @@ class _HotelsPageState extends State<HotelsPage> {
                                   .push(RoomRoute(hotel: hotel));
                             },
                             child: const Text(
-                              'К выбору номера',
+                              toChooseRoom,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
@@ -123,7 +124,7 @@ class _HotelsPageState extends State<HotelsPage> {
               );
             }
             return const Center(
-              child: Text("Что то пошло не так! Попробуйте позже!"),
+              child: Text(somthingWrong),
             );
           },
         ),
@@ -145,7 +146,7 @@ class _HotelsPageState extends State<HotelsPage> {
           ),
         ),
         const Text(
-          "за тур с перелётом",
+          tourWithflight,
           style: TextStyle(
             color: Color(0xFF828796),
             fontSize: 16,

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hotels/core/utils/constants.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class PaymentPage extends StatelessWidget {
     var width = MediaQuery.of(context).size.width - 16;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Заказ оплачен'),
+        title: const Text(orderPayedScreenTitle),
         centerTitle: true,
       ),
       body: Center(
@@ -38,7 +39,7 @@ class PaymentPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               const Text(
-                'Ваш заказ принят в работу',
+                orderInProcess,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -47,8 +48,7 @@ class PaymentPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               const Text(
-                'Подтверждение заказа №104893 может занять некоторое время (от 1 часа до суток). '
-                'Как только мы получим ответ от туроператора, вам на почту придет уведомление.',
+                ordeConfirmed1,
                 style: TextStyle(
                   color: Color(0xFF828796),
                   fontSize: 16,

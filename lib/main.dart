@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hotels/router/auto_routes.dart';
 import 'package:hotels/injections/di.dart' as di;
+import 'package:hotels/theme/app_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,26 +25,7 @@ class _HotelsAppState extends State<HotelsApp> {
       return MaterialApp.router(
         debugShowCheckedModeBanner: false,
         routerConfig: _appRouter.config(),
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          scaffoldBackgroundColor: const Color.fromARGB(255, 237, 237, 237),
-          cardColor: Colors.white,
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ButtonStyle(
-              backgroundColor:
-                  MaterialStateProperty.all(const Color(0xFF0D72FF)),
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              shape: MaterialStateProperty.all(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              minimumSize:
-                  MaterialStateProperty.all(const Size(double.infinity, 48)),
-            ),
-          ),
-        ),
+        theme: AppTheme.lightTheme,
       );
     });
   }
