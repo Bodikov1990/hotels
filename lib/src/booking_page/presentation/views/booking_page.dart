@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hotels/core/utils/constants.dart';
 import 'package:hotels/router/auto_routes.dart';
-import 'package:hotels/src/booking_page/presentation/views/view_model/tourist_info_model.dart';
+
 import 'package:hotels/src/booking_page/presentation/bloc/booking_bloc.dart';
 import 'package:hotels/src/booking_page/presentation/views/booking_details_widget.dart';
 import 'package:hotels/src/booking_page/presentation/views/booking_price_widget.dart';
@@ -29,7 +29,7 @@ class _BookingPageState extends State<BookingPage> {
 
   final List<TouristInfoModel> tourists = [
     TouristInfoModel(isExpanded: true, name: 'Иван', lastName: 'Иванов'),
-    TouristInfoModel(isExpanded: false, name: '', lastName: '')
+    TouristInfoModel(isExpanded: true, name: '', lastName: '')
   ];
 
   @override
@@ -337,7 +337,7 @@ class _BookingPageState extends State<BookingPage> {
     } else if (index == 1) {
       title = secondTourist;
     } else {
-      title = '$tourist ${index + 1}';
+      title = 'Турист ${index + 1}';
     }
 
     return Container(
@@ -536,4 +536,34 @@ class _BookingPageState extends State<BookingPage> {
       ),
     );
   }
+}
+
+class TouristInfoModel {
+  Widget icon;
+  bool isExpanded;
+  String name;
+  String lastName;
+  String birthDate;
+  String citizenship;
+  String passportNumber;
+  String passportExpiryDate;
+  String phone;
+  String email;
+
+  TouristInfoModel(
+      {Widget icon = const Icon(Icons.arrow_drop_down),
+      this.isExpanded = false,
+      this.name = '',
+      this.lastName = '',
+      this.birthDate = '',
+      this.citizenship = '',
+      this.passportNumber = '',
+      this.passportExpiryDate = '',
+      this.phone = '',
+      this.email = ''})
+      : icon = SvgPicture.asset(
+          "assets/images/arrow_down.svg",
+          width: 24,
+          height: 24,
+        );
 }
